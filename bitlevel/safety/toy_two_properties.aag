@@ -1,0 +1,6 @@
+aag 1 0 1 2 0
+2 2 0
+2
+3
+c
+Initial latch x=0, next(x)=x. PO0=x is safe; PO1=!x is unsafe.

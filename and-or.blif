@@ -1,0 +1,12 @@
+.model and_or
+.inputs a b c
+.outputs x y
+
+.names a b x
+11 1
+
+.names x c y
+1- 1
+-1 1
+
+.end

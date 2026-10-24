@@ -1,0 +1,105 @@
+source -s abc.rc
+read HA.aig 
+ps -h
+glucose -h
+&glucose -h
+&get
+&glucose -v
+&glucose 
+bmc3 -h
+read Shift.aig 
+&get;&glucose -v
+bmc3 -gvT 30
+bmc3 -agvT 30
+source -s abc.rc
+read bitlevel/safety/2025/hkust/benchmarks_initial_output_btor2_example_10_miter_miter.aig 
+read HA.aig
+ps -h
+&glucose -h
+&get
+&glucose -v
+&glucose
+read Shift.aig
+bmc3 -h
+bmc3 -gvT 30
+bmc3 -agvT 30
+source -s abc.rc
+read FA.aig
+read_formula -h
+read_formula a+b
+strash
+write XOR.aig
+read_truth -h
+read_truth 8
+read_truth -x 1000
+read_truth 8|6
+read and-or.blif
+write and-or.aig
+source -s abc.rc
+read not-xor-nand.bliff
+read not-xor-nand.blif
+write not-xor-nand.aig
+strash
+read mux-const-buffer.blif
+write mux-const-buffer.aig
+read bitlevel/safety/2025/sosylab/safety-func/seq-mthreaded/pals_opt-floodmax.5_overflow.ufo.UNBOUNDED.pals.aig 
+fold
+&get
+&posplit -N 2
+&put
+read bitlevel/safety/2025/sosylab/safety-func/nla-digbench-scaling/prodbin-ll_unwindbound50.aig 
+&posplit -N 3
+&cone O -0;&put;scleanup;cleanup;ps
+&cone -O 0;&put;scleanup;cleanup;ps
+bmc3 -gvT 10
+bmc3 -gvT 50
+source -s abc.rc
+read \\wsl.localhost\Ubuntu\home\toushali\fv\buckets_2025\bucket_1\microban_44.aig
+read buckets_2025/bucket_1/microban_44.aig
+read buckets_2025/bucket_2/microban_1.aig
+fold
+read ../buckets_2025/bucket_1/microban_44.aig
+read /buckets_2025/bucket_1/microban_44.aig
+abc 01> read buckets_2025/bucket_1/microban_44.aig
+pdr -vT 50
+purse -vT 50
+purse -T 100
+purse -h
+purse -vT 100
+source -s abc.rc
+purse -h 
+read buckets_2025/bucket_2/microban_1.aig
+fold
+purse -vT 50 -B 5000 -P 200000 
+pdr -vT 100
+purse -vT 50 -B 50000 -P 2000000 
+purse -B 
+read buckets_2025/bucket_5/Problem14_label54.aig
+pdr -vT 10
+purse -vT 30 -B 50000 -P 2000000  
+source -s abc.rc
+read /buckets_2025/bucket_1/microban_44.aig
+read buckets_2025/bucket_2/microban_1.aig
+fold
+purse -vT 30 -B 50000 -P 2000000
+getcscope
+/getcscope
+./getCscope
+read_aiger /buckets_2025/buckets/bucket_1/nusmvsyncarb5multi.aig
+read_aiger buckets_2025/buckets/bucket_1/nusmvsyncarb5multi.aig
+read_aiger buckets/bucket_1/nusmvsyncarb5multi.aig
+purse -O 3 -T 1
+source -s abc.rc
+purse -O 1 -T 1
+read_aiger bitlevel/safety/toy_two_properties.aig
+strash
+purse -O 1 -T 10
+purse -O 0 -T 10
+ purse -O 0 -T 10
+read_aiger buckets_2025/buckets/bucket_2/nusmvsyncarb10multi.aig
+read_aiger buckets/bucket_2/nusmvsyncarb10multi.aig
+fold
+ pdr -a -T 120
+purse -O 2 -T 10
+purse -O 3 -T 10
+purse -O 4 -T 10

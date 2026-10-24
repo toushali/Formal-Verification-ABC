@@ -1,0 +1,15 @@
+.model mux-const-buffer
+.inputs a b s
+.outputs x y z t
+
+.names s a b x
+ 01- 1
+ 1-1 1
+
+.names y
+
+.names z
+ 1
+
+.names x t
+1 1
