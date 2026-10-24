@@ -103,3 +103,9 @@ fold
 purse -O 2 -T 10
 purse -O 3 -T 10
 purse -O 4 -T 10
+source -s abc.rc
+read_aiger bitlevel/safety/counter4_bad7.aig
+strash
+purse -O 0 -T 60
+purse -O 0 -S 1 -R 1 -T 60
+purse -O 0 -S 1 -R 12 -T 60
