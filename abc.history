@@ -109,3 +109,59 @@ strash
 purse -O 0 -T 60
 purse -O 0 -S 1 -R 1 -T 60
 purse -O 0 -S 1 -R 12 -T 60
+purse -O 0 -P 1 -R 20 -T 60
+purse -O 0 -B 1 -R 20 -T 60
+purse -O 0 -B 1 -P 1 -R 20 -T 60
+purse -O 0 -S 1 -B 1 -R 20 -T 60
+read_aiger buckets/bucket_2/nusmvsyncarb10multi.aig
+purse -P 1 -R 200 -T 60
+source -s abc.rc
+strash
+purse -P 1 -R 8 -T 60
+purse -P 1 -R 10 -T 60
+purse -P 1 -R 50 -T 60
+purse -P 1 -R 10 -T 60 -V 1
+purse -P 1 -R 10 -T 60 -V 2
+purse -P 1 -R 200 -T 60 -V 2
+purse -P 1 -R 200 -T 60 -V 1
+read bitlevel/safety/2013/multi/nusmvsyncarb10multi.aig
+purse -B 1000 -P 50000 -T 60 -V 1 -A
+purse -B 1000 -P 50000 -T 60 -V 1
+purse -B 1000 -P 50000 -T 60 -V 2
+purse -B 1000 -P 50000 -T 60 -V 3
+read bitlevel/safety/2013/multi/6s111.aig
+fold
+source -s abc.rc
+read buckets/bucket_2/bob12m16m.aig
+strash
+-c "read bob12m16m.aig; purse -B 1000 -P 100000 -T 10 V 2" > v2_10.log 2>&1
+./abc -c "read bob12m16m.aig; purse -B 1000 -P 100000 -T 10 -V 2" > v2_10.log 2>&1
+read aiger test-designs/bob12m16m.aig
+read_aiger test-designs/bob12m16m.aig
+read bitlevel/safety/2013/multi/bob12m16m.aig
+purse -B 1000 -P 100000 -T 10 -V 3
+grep -c "PURSE-ALLOC-N" v3_10.log
+purse -B 1000 -P 100000 -T 10 -V 3 -E 1
+source -s abc.rc
+read buckets/bucket_2/bob12m16m.aig
+strash
+purse -B 1000 -P 100000 -T 10 -V 3 -E 3
+purse -B 1000 -P 100000 -T 10 -V 3 -E 2
+pdr -T 10
+pdr -T 60
+pdr -h
+pdr -h -w
+pdr -T 60 -w
+pdr_status
+print_status
+show_properties
+read buckets/bucket_2/bob12m16m.aig
+strash
+pdr -T 60 -v
+source -s abc.rc
+purse -B 1000 -P 100000 -T 60 -E 3
+purse -B 1000 -P 100000 -T 60 -E 2
+purse -B 1000 -P 100000 -T 100 -E 2
+purse -B 1000 -P 100000 -T 100 -E 3
+purse -B 1000 -P 100000 -T 100 -E 1
+pdr -avT 100
